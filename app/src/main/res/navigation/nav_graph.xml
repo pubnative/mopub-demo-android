@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/nav_graph"
+        app:startDestination="@id/nav_ad_units">
+    <fragment
+            android:id="@+id/nav_ad_units"
+            android:name="net.pubnative.mopubdemo.ui.fragments.AdUnitNavFragment"
+            android:label="@string/nav_ad_unit"
+            tools:layout="@layout/fragment_nav_ad_unit"/>
+    <fragment
+            android:id="@+id/nav_ads"
+            android:name="net.pubnative.mopubdemo.ui.fragments.AdsNavFragment"
+            android:label="@string/nav_ads"
+            tools:layout="@layout/fragment_nav_ads"/>
+</navigation>
