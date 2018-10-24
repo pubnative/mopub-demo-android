@@ -3,4 +3,46 @@
 
     <string name="nav_ad_unit">Ad Units</string>
     <string name="nav_ads">Ad Sizes</string>
+
+    <string name="ad_unit_id_default_banner">d9326e0b06b24083ba7b687834243df0</string>
+    <string name="ad_unit_id_default_mrect">0a35c946192848a8b138ef7e8599ebc6</string>
+    <string name="ad_unit_id_default_leaderboard">e6fa24882e2941f6a804e353564b9f29</string>
+    <string name="ad_unit_id_default_interstitial">ce4337adcdcc4004bfa1ad2fdfc9ecd5</string>
+
+    <string name="ad_unit_name_default_banner">Default Banner</string>
+    <string name="ad_unit_name_default_mrect">Default Medium</string>
+    <string name="ad_unit_name_default_leaderboard">Default Leaderboard</string>
+    <string name="ad_unit_name_default_interstitial">Default Interstitial</string>
+
+    <string name="ad_size_banner">Banner (320 x 50)</string>
+    <string name="ad_size_banner_simple">Banner</string>
+    <string name="ad_size_mrect">Medium (300 x 250)</string>
+    <string name="ad_size_mrect_simple">Medium</string>
+    <string name="ad_size_leaderboard">Leaderboard (728 x 90)</string>
+    <string name="ad_size_leaderboard_simple">Leaderboard</string>
+    <string name="ad_size_interstitial">Interstitial (Fullscreen)</string>
+    <string name="ad_size_interstitial_simple">Interstitial</string>
+
+    <array name="ad_sizes">
+        <item>@string/ad_size_banner</item>
+        <item>@string/ad_size_mrect</item>
+        <item>@string/ad_size_leaderboard</item>
+        <item>@string/ad_size_interstitial</item>
+    </array>
+
+    <string name="ad_unit_name">Ad unit name:</string>
+    <string name="ad_unit_size">Size:</string>
+    <string name="ad_unit_id">Ad unit id:</string>
+
+    <string name="symbol_empty">" - "</string>
+
+    <string name="action_request_ad">Request ad</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_remove">Remove</string>
+    <string name="action_insert">Insert</string>
+    <string name="action_accept">Accept</string>
+    <string name="action_cancel">Cancel</string>
+
+    <string name="confirmation_edit">Please confirm you want to edit the selected ad unit id.</string>
+    <string name="confirmation_remove">Please confirm you want to remove the selected ad unit id.</string>
 </resources>
