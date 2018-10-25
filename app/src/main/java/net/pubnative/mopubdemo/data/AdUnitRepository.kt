@@ -11,12 +11,12 @@ class AdUnitRepository(private val context: Context) : AdUnitDataSource {
         localDataSource = AdUnitLocalDataSource(context)
     }
 
-    override fun fetchAll(callback: AdUnitDataSource.Callback) {
+    override fun fetchAll(callback: AdUnitDataSource.FetchCallback) {
         localDataSource.fetchAll(callback)
     }
 
-    override fun add(adUnit: AdUnit) {
-        localDataSource.add(adUnit)
+    override fun add(adUnit: AdUnit, callback: AdUnitDataSource.AddCallback) {
+        localDataSource.add(adUnit, callback)
     }
 
     override fun edit(adUnit: AdUnit) {

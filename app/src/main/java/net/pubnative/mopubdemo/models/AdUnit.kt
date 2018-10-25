@@ -1,3 +1,11 @@
 package net.pubnative.mopubdemo.models
 
-data class AdUnit(val name: String, val adUnitId: String, val adSize: AdSize)
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "ad_unit")
+data class AdUnit(
+    @PrimaryKey val name: String,
+    val adUnitId: String,
+    val adSize: Int
+)

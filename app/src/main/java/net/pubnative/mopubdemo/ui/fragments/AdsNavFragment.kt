@@ -8,10 +8,9 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_nav_ads.*
 import net.pubnative.mopubdemo.R
 import net.pubnative.mopubdemo.managers.SettingsManager
-import net.pubnative.mopubdemo.models.AdSize
-import net.pubnative.mopubdemo.models.AdUnit
+import net.pubnative.mopubdemo.models.*
 
-class AdsNavFragment: Fragment() {
+class AdsNavFragment : Fragment() {
     companion object {
         private val TAG = AdsNavFragment::class.java.simpleName
     }
@@ -37,10 +36,10 @@ class AdsNavFragment: Fragment() {
 
 
         view_ad_unit_name.text = when (adUnit?.adSize) {
-            AdSize.BANNER -> getString(R.string.ad_size_banner_simple)
-            AdSize.MRECT -> getString(R.string.ad_size_mrect_simple)
-            AdSize.LEADERBOARD -> getString(R.string.ad_size_leaderboard_simple)
-            AdSize.INTERSTITIAL -> getString(R.string.ad_size_interstitial_simple)
+            BANNER -> getString(R.string.ad_size_banner_simple)
+            MRECT -> getString(R.string.ad_size_mrect_simple)
+            LEADERBOARD -> getString(R.string.ad_size_leaderboard_simple)
+            INTERSTITIAL -> getString(R.string.ad_size_interstitial_simple)
             else -> getString(R.string.ad_size_banner_simple)
         }
 

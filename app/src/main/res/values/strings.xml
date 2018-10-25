@@ -43,6 +43,8 @@
     <string name="action_accept">Accept</string>
     <string name="action_cancel">Cancel</string>
 
+    <string name="title_insert_ad_unit">Insert Ad Unit</string>
+
     <string name="confirmation_edit">Please confirm you want to edit the selected ad unit id.</string>
     <string name="confirmation_remove">Please confirm you want to remove the selected ad unit id.</string>
 </resources>
