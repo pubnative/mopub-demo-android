@@ -34,6 +34,9 @@
     <string name="ad_unit_size">Size:</string>
     <string name="ad_unit_id">Ad unit id:</string>
 
+    <string name="hint_ad_unit_name">Ad unit name</string>
+    <string name="hint_ad_unit_id">Ad unit id</string>
+
     <string name="symbol_empty">" - "</string>
 
     <string name="action_request_ad">Request ad</string>
@@ -44,6 +47,8 @@
     <string name="action_cancel">Cancel</string>
 
     <string name="title_insert_ad_unit">Insert Ad Unit</string>
+    <string name="title_edit_ad_unit">Edit Ad Unit</string>
+    <string name="error_field_validation">The inserted data is not valid.</string>
 
     <string name="confirmation_edit">Please confirm you want to edit the selected ad unit id.</string>
     <string name="confirmation_remove">Please confirm you want to remove the selected ad unit id.</string>

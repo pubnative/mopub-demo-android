@@ -8,17 +8,24 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_nav_ad_unit.*
 import net.pubnative.mopubdemo.R
+import net.pubnative.mopubdemo.data.AdUnitDataSource
 import net.pubnative.mopubdemo.data.AdUnitRepository
 import net.pubnative.mopubdemo.listeners.AdUnitClickListener
 import net.pubnative.mopubdemo.managers.SettingsManager
 import net.pubnative.mopubdemo.models.*
 import net.pubnative.mopubdemo.ui.adapters.AdUnitAdapter
+import net.pubnative.mopubdemo.ui.dialogs.CreateAdUnitDialog
+import net.pubnative.mopubdemo.ui.dialogs.EditAdUnitDialog
 
-class AdUnitNavFragment : Fragment(), AdUnitClickListener {
+class AdUnitNavFragment : Fragment(), AdUnitClickListener, CreateAdUnitDialog.CreateDialogListener, EditAdUnitDialog.EditDialogListener {
     companion object {
         private val TAG = AdsNavFragment::class.java.simpleName
+
+        private const val REQUEST_CREATE = 300
+        private const val REQUEST_EDIT = 301
     }
 
     private lateinit var adapter: AdUnitAdapter
@@ -47,7 +54,7 @@ class AdUnitNavFragment : Fragment(), AdUnitClickListener {
         loadAdUnits()
 
         button_add_ad_unit.setOnClickListener {
-
+            showInsertDialog()
         }
     }
 
@@ -56,7 +63,7 @@ class AdUnitNavFragment : Fragment(), AdUnitClickListener {
         view_ad_unit_id.text = adUnit.adUnitId
 
 
-        view_ad_unit_name.text = when (adUnit.adSize) {
+        view_ad_unit_size.text = when (adUnit.adSize) {
             BANNER -> getString(R.string.ad_size_banner_simple)
             MRECT -> getString(R.string.ad_size_mrect_simple)
             LEADERBOARD -> getString(R.string.ad_size_leaderboard_simple)
@@ -66,13 +73,21 @@ class AdUnitNavFragment : Fragment(), AdUnitClickListener {
     }
 
     private fun loadAdUnits() {
+        adUnitRepository.fetchAll(object : AdUnitDataSource.FetchCallback {
+            override fun onSuccess(items: List<AdUnit>) {
+                adapter.clear()
+                adapter.addAll(items)
+            }
 
+            override fun onError(throwable: Throwable) {
+                Snackbar.make(view!!, "There's been an error loading the ad units", Snackbar.LENGTH_SHORT).show()
+            }
+        })
     }
 
     override fun onAdUnitClick(adUnit: AdUnit) {
         settingsManager.setSelectedAdUnit(adUnit)
         setupAdUnit(adUnit)
-
     }
 
     override fun onAdUnitEdit(adUnit: AdUnit) {
@@ -80,18 +95,39 @@ class AdUnitNavFragment : Fragment(), AdUnitClickListener {
     }
 
     override fun onAdUnitRemove(adUnit: AdUnit) {
-        showConfirmRemoveDialog(adUnit)
+        adUnitRepository.remove(adUnit)
+        adapter.delete(adUnit)
     }
 
     private fun showInsertDialog() {
-
+        val dialog = CreateAdUnitDialog.newInstance()
+        dialog.setTargetFragment(this, REQUEST_CREATE)
+        dialog.show(fragmentManager, "create_dialog")
     }
 
     private fun showEditDialog(adUnit: AdUnit) {
-
+        val dialog = EditAdUnitDialog.newInstance(adUnit)
+        dialog.setTargetFragment(this, REQUEST_EDIT)
+        dialog.show(fragmentManager, "create_dialog")
     }
 
-    private fun showConfirmRemoveDialog(adUnit: AdUnit) {
+    override fun onSubmitCreate(adUnit: AdUnit) {
+        createAdUnitOnDB(adUnit)
+    }
 
+    override fun onSubmitEdit(adUnit: AdUnit) {
+        adUnitRepository.edit(adUnit)
+    }
+
+    private fun createAdUnitOnDB(adUnit: AdUnit) {
+        adUnitRepository.add(adUnit, object : AdUnitDataSource.AddCallback {
+            override fun onSuccess() {
+                adapter.add(adUnit)
+            }
+
+            override fun onError(throwable: Throwable) {
+                Snackbar.make(view!!, "There's been an error saving the ad unit", Snackbar.LENGTH_SHORT).show()
+            }
+        })
     }
 }
