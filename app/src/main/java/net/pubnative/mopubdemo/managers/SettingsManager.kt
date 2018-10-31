@@ -30,9 +30,15 @@ class SettingsManager(private val context: Context) {
         return AdUnit(adUnitName!!, adUnitId!!, adUnitSize)
     }
 
+    fun areAdUnitsInitialised(): Boolean {
+        return preferences.contains(PREF_AD_UNITS_INITIALIZED) && preferences.getBoolean(PREF_AD_UNITS_INITIALIZED, false)
+    }
+
     companion object {
-        private val PREF_AD_UNIT_NAME = "ad_unit_name"
-        private val PREF_AD_UNIT_ID = "ad_unit_id"
-        private val PREF_AD_UNIT_SIZE = "ad_unit_size"
+        private const val PREF_AD_UNIT_NAME = "ad_unit_name"
+        private const val PREF_AD_UNIT_ID = "ad_unit_id"
+        private const val PREF_AD_UNIT_SIZE = "ad_unit_size"
+
+        private const val PREF_AD_UNITS_INITIALIZED = "ad_units_initialized"
     }
 }

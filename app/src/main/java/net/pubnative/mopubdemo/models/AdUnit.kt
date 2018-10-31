@@ -9,12 +9,13 @@ import androidx.room.PrimaryKey
 data class AdUnit(
     @PrimaryKey val name: String,
     val adUnitId: String,
-    val adSize: Int
+    val adSize: Int, val defaultUnit: Boolean = false
 ) : Parcelable {
     private constructor(parcel: Parcel?) : this(
         parcel?.readString()!!,
         parcel.readString()!!,
-        parcel.readInt()
+        parcel.readInt(),
+        parcel.readInt() == 1
     )
 
     override fun describeContents() = 0
@@ -23,6 +24,7 @@ data class AdUnit(
         dest?.writeString(name)
         dest?.writeString(adUnitId)
         dest?.writeInt(adSize)
+        dest?.writeInt(if (defaultUnit) 1 else 0)
     }
 
     companion object {

@@ -102,6 +102,30 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"/>
+
+        <com.mopub.mobileads.MoPubView
+                android:id="@+id/ad_banner"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone"/>
+
+        <com.mopub.mobileads.MoPubView
+                android:id="@+id/ad_mrect"
+                android:layout_width="300dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone"/>
+
+        <com.mopub.mobileads.MoPubView
+                android:id="@+id/ad_leaderboard"
+                android:layout_width="728dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone"/>
     </LinearLayout>
 
 </ScrollView>

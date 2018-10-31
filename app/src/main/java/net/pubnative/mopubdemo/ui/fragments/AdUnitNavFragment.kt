@@ -14,13 +14,15 @@ import net.pubnative.mopubdemo.R
 import net.pubnative.mopubdemo.data.AdUnitDataSource
 import net.pubnative.mopubdemo.data.AdUnitRepository
 import net.pubnative.mopubdemo.listeners.AdUnitClickListener
+import net.pubnative.mopubdemo.managers.MoPubManager
 import net.pubnative.mopubdemo.managers.SettingsManager
 import net.pubnative.mopubdemo.models.*
 import net.pubnative.mopubdemo.ui.adapters.AdUnitAdapter
 import net.pubnative.mopubdemo.ui.dialogs.CreateAdUnitDialog
 import net.pubnative.mopubdemo.ui.dialogs.EditAdUnitDialog
 
-class AdUnitNavFragment : Fragment(), AdUnitClickListener, CreateAdUnitDialog.CreateDialogListener, EditAdUnitDialog.EditDialogListener {
+class AdUnitNavFragment : Fragment(), AdUnitClickListener, CreateAdUnitDialog.CreateDialogListener,
+    EditAdUnitDialog.EditDialogListener {
     companion object {
         private val TAG = AdsNavFragment::class.java.simpleName
 
@@ -70,19 +72,62 @@ class AdUnitNavFragment : Fragment(), AdUnitClickListener, CreateAdUnitDialog.Cr
             INTERSTITIAL -> getString(R.string.ad_size_interstitial_simple)
             else -> getString(R.string.symbol_empty)
         }
+
+        MoPubManager.initMoPubSdk(activity!!, adUnit)
     }
 
     private fun loadAdUnits() {
         adUnitRepository.fetchAll(object : AdUnitDataSource.FetchCallback {
             override fun onSuccess(items: List<AdUnit>) {
                 adapter.clear()
-                adapter.addAll(items)
+                adapter.addAll(injectDefaultAdUnits(items))
             }
 
             override fun onError(throwable: Throwable) {
                 Snackbar.make(view!!, "There's been an error loading the ad units", Snackbar.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun injectDefaultAdUnits(items: List<AdUnit>): List<AdUnit> {
+        val tempList = mutableListOf<AdUnit>()
+
+        tempList.add(
+            AdUnit(
+                getString(R.string.ad_unit_name_default_banner),
+                getString(R.string.ad_unit_id_default_banner),
+                BANNER,
+                true
+            )
+        )
+        tempList.add(
+            AdUnit(
+                getString(R.string.ad_unit_name_default_mrect),
+                getString(R.string.ad_unit_id_default_mrect),
+                MRECT,
+                true
+            )
+        )
+        tempList.add(
+            AdUnit(
+                getString(R.string.ad_unit_name_default_leaderboard),
+                getString(R.string.ad_unit_id_default_leaderboard),
+                LEADERBOARD,
+                true
+            )
+        )
+        tempList.add(
+            AdUnit(
+                getString(R.string.ad_unit_name_default_interstitial),
+                getString(R.string.ad_unit_id_default_interstitial),
+                INTERSTITIAL,
+                true
+            )
+        )
+
+        tempList.addAll(items)
+
+        return tempList
     }
 
     override fun onAdUnitClick(adUnit: AdUnit) {

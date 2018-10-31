@@ -49,6 +49,9 @@ class AdUnitViewHolder(itemView: View, private val listener: AdUnitClickListener
     private fun showPopupMenu() {
         val menu = PopupMenu(itemView.context, itemView.findViewById(R.id.button_more))
         menu.menuInflater.inflate(R.menu.popup_ad_unit, menu.menu)
+
+        menu.menu.findItem(R.id.action_remove).isEnabled = !adUnit?.defaultUnit!!
+
         menu.setOnMenuItemClickListener(this)
         menu.show()
     }
