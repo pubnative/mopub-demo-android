@@ -68,7 +68,7 @@ class AdUnitNavFragment : Fragment(), AdUnitClickListener, CreateAdUnitDialog.Cr
             MRECT -> getString(R.string.ad_size_mrect_simple)
             LEADERBOARD -> getString(R.string.ad_size_leaderboard_simple)
             INTERSTITIAL -> getString(R.string.ad_size_interstitial_simple)
-            else -> getString(R.string.ad_size_banner_simple)
+            else -> getString(R.string.symbol_empty)
         }
     }
 

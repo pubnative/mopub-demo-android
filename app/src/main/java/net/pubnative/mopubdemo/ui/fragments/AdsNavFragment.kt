@@ -35,12 +35,12 @@ class AdsNavFragment : Fragment() {
         view_ad_unit_id.text = adUnit?.adUnitId
 
 
-        view_ad_unit_name.text = when (adUnit?.adSize) {
+        view_ad_unit_size.text = when (adUnit?.adSize) {
             BANNER -> getString(R.string.ad_size_banner_simple)
             MRECT -> getString(R.string.ad_size_mrect_simple)
             LEADERBOARD -> getString(R.string.ad_size_leaderboard_simple)
             INTERSTITIAL -> getString(R.string.ad_size_interstitial_simple)
-            else -> getString(R.string.ad_size_banner_simple)
+            else -> getString(R.string.symbol_empty)
         }
 
         button_request.setOnClickListener {
