@@ -47,6 +47,7 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
                 adView?.adUnitId = adUnit?.adUnitId
                 adView?.bannerAdListener = this
                 interstitial = null
+                button_show_interstitial.visibility = View.GONE
                 view_ad_unit_size.text = getString(R.string.ad_size_banner_simple)
             }
             MRECT -> {
@@ -54,6 +55,7 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
                 adView?.adUnitId = adUnit?.adUnitId
                 adView?.bannerAdListener = this
                 interstitial = null
+                button_show_interstitial.visibility = View.GONE
                 view_ad_unit_size.text = getString(R.string.ad_size_mrect_simple)
             }
             LEADERBOARD -> {
@@ -61,17 +63,21 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
                 adView?.adUnitId = adUnit?.adUnitId
                 adView?.bannerAdListener = this
                 interstitial = null
+                button_show_interstitial.visibility = View.GONE
                 view_ad_unit_size.text = getString(R.string.ad_size_leaderboard_simple)
             }
             INTERSTITIAL -> {
                 adView = null
                 interstitial = MoPubInterstitial(activity!!, adUnit?.adUnitId!!)
                 interstitial?.interstitialAdListener = this
+                button_show_interstitial.visibility = View.VISIBLE
+                button_show_interstitial.isEnabled = false
                 view_ad_unit_size.text = getString(R.string.ad_size_interstitial_simple)
             }
             else -> {
                 adView = null
                 interstitial = null
+                button_show_interstitial.visibility = View.GONE
                 view_ad_unit_size.text = getString(R.string.symbol_empty)
             }
         }
@@ -83,6 +89,9 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
             } else if (adUnit?.adSize == INTERSTITIAL) {
                 interstitial?.load()
             }
+        }
+        button_show_interstitial.setOnClickListener {
+            interstitial?.show()
         }
     }
 
@@ -116,6 +125,7 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
 
     // Interstitial Ad Listener
     override fun onInterstitialLoaded(interstitial: MoPubInterstitial?) {
+        button_show_interstitial.isEnabled = true
         Log.d(TAG, "onInterstitialLoaded")
     }
 

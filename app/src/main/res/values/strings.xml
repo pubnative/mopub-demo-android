@@ -45,6 +45,7 @@
     <string name="action_insert">Insert</string>
     <string name="action_accept">Accept</string>
     <string name="action_cancel">Cancel</string>
+    <string name="action_show">Show</string>
 
     <string name="title_insert_ad_unit">Insert Ad Unit</string>
     <string name="title_edit_ad_unit">Edit Ad Unit</string>

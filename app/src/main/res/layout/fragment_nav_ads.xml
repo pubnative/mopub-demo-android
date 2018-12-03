@@ -103,6 +103,16 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"/>
 
+        <Button
+                android:id="@+id/button_show_interstitial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/action_show"
+                android:visibility="gone"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"/>
+
         <com.mopub.mobileads.MoPubView
                 android:id="@+id/ad_banner"
                 android:layout_width="320dp"
