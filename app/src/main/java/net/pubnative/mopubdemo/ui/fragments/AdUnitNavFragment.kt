@@ -147,13 +147,13 @@ class AdUnitNavFragment : Fragment(), AdUnitClickListener, CreateAdUnitDialog.Cr
     private fun showInsertDialog() {
         val dialog = CreateAdUnitDialog.newInstance()
         dialog.setTargetFragment(this, REQUEST_CREATE)
-        dialog.show(fragmentManager, "create_dialog")
+        dialog.show(fragmentManager!!, "create_dialog")
     }
 
     private fun showEditDialog(adUnit: AdUnit) {
         val dialog = EditAdUnitDialog.newInstance(adUnit)
         dialog.setTargetFragment(this, REQUEST_EDIT)
-        dialog.show(fragmentManager, "create_dialog")
+        dialog.show(fragmentManager!!, "create_dialog")
     }
 
     override fun onSubmitCreate(adUnit: AdUnit) {

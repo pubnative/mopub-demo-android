@@ -7,7 +7,5 @@ import java.util.logging.Level
 class MoPubDemoApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-
-        MoPubLog.setSdkHandlerLevel(Level.ALL)
     }
 }

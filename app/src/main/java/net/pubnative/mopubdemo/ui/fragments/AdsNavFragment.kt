@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.mopub.mobileads.MoPubErrorCode
 import com.mopub.mobileads.MoPubInterstitial
@@ -46,6 +47,7 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
                 adView = view.findViewById(R.id.ad_banner)
                 adView?.adUnitId = adUnit?.adUnitId
                 adView?.bannerAdListener = this
+                adView?.autorefreshEnabled = false
                 interstitial = null
                 button_show_interstitial.visibility = View.GONE
                 view_ad_unit_size.text = getString(R.string.ad_size_banner_simple)
@@ -54,6 +56,7 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
                 adView = view.findViewById(R.id.ad_mrect)
                 adView?.adUnitId = adUnit?.adUnitId
                 adView?.bannerAdListener = this
+                adView?.autorefreshEnabled = false
                 interstitial = null
                 button_show_interstitial.visibility = View.GONE
                 view_ad_unit_size.text = getString(R.string.ad_size_mrect_simple)
@@ -62,6 +65,7 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
                 adView = view.findViewById(R.id.ad_leaderboard)
                 adView?.adUnitId = adUnit?.adUnitId
                 adView?.bannerAdListener = this
+                adView?.autorefreshEnabled = false
                 interstitial = null
                 button_show_interstitial.visibility = View.GONE
                 view_ad_unit_size.text = getString(R.string.ad_size_leaderboard_simple)
@@ -108,6 +112,7 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
 
     override fun onBannerFailed(banner: MoPubView?, errorCode: MoPubErrorCode?) {
         Log.d(TAG, "onBannerFailed")
+        Toast.makeText(context, errorCode?.name, Toast.LENGTH_SHORT).show()
     }
 
     override fun onBannerClicked(banner: MoPubView?) {
@@ -131,6 +136,7 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
 
     override fun onInterstitialFailed(interstitial: MoPubInterstitial?, errorCode: MoPubErrorCode?) {
         Log.d(TAG, "onInterstitialFailed")
+        Toast.makeText(context, errorCode?.name, Toast.LENGTH_SHORT).show()
     }
 
     override fun onInterstitialShown(interstitial: MoPubInterstitial?) {

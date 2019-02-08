@@ -1,50 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/item_ad_unit_container"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="?selectableItemBackground">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_ad_unit_container"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="?selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
 
     <ImageButton
-            android:id="@+id/button_more"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="?selectableItemBackground"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:src="@drawable/icon_more"/>
+        android:id="@+id/button_more"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="?selectableItemBackground"
+        android:src="@drawable/icon_more" />
 
     <TextView
-            android:id="@+id/view_size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@id/button_more"
-            android:layout_toLeftOf="@id/button_more"
-            android:textSize="14sp"
-            android:textColor="@color/purple_dark"
-            tools:text="Banner"
-            android:maxLines="1"/>
+        android:id="@+id/view_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/button_more"
+        android:layout_toLeftOf="@id/button_more"
+        android:maxLines="1"
+        android:textColor="@color/primary_dark"
+        android:textSize="14sp"
+        tools:text="Banner" />
 
     <TextView
-            android:id="@+id/view_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_toLeftOf="@id/view_size"
-            android:layout_toStartOf="@id/view_size"
-            android:ellipsize="end"
-            tools:text="Ad unit name"
-            android:maxLines="1"/>
+        android:id="@+id/view_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_toStartOf="@id/view_size"
+        android:layout_toLeftOf="@id/view_size"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        tools:text="Ad unit name" />
 </RelativeLayout>

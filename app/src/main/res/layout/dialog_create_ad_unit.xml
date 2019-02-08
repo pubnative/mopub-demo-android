@@ -1,81 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/input_ad_unit_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_ad_unit_name"
-                    android:maxLines="1"/>
+                android:id="@+id/input_ad_unit_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_ad_unit_name"
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/input_ad_unit_id"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_ad_unit_id"
-                    android:maxLines="1"/>
+                android:id="@+id/input_ad_unit_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_ad_unit_id"
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ad_unit_size"
-                android:textSize="12sp"
-                android:textColor="@color/purple_dark"
-                android:layout_marginTop="8dp"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/ad_unit_size"
+            android:textColor="@color/primary_dark"
+            android:textSize="12sp" />
 
         <RadioGroup
-                android:id="@+id/group_ad_unit_size"
+            android:id="@+id/group_ad_unit_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radio_banner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="20dp">
+                android:checked="true"
+                android:text="@string/ad_size_banner" />
 
             <RadioButton
-                    android:id="@+id/radio_banner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ad_size_banner"
-                    android:checked="true"/>
+                android:id="@+id/radio_mrect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ad_size_mrect" />
 
             <RadioButton
-                    android:id="@+id/radio_mrect"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ad_size_mrect"/>
+                android:id="@+id/radio_leaderboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ad_size_leaderboard" />
 
             <RadioButton
-                    android:id="@+id/radio_leaderboard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ad_size_leaderboard"/>
-
-            <RadioButton
-                    android:id="@+id/radio_interstitial"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ad_size_interstitial"/>
+                android:id="@+id/radio_interstitial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ad_size_interstitial" />
         </RadioGroup>
     </LinearLayout>
 </ScrollView>
