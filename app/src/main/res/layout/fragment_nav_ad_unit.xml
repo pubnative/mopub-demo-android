@@ -94,6 +94,8 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="18dp"
             android:text="@string/symbol_empty"
+            android:clickable="true"
+            android:focusable="true"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
