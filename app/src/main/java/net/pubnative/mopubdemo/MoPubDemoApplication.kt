@@ -1,10 +1,8 @@
 package net.pubnative.mopubdemo
 
-import android.app.Application
-import com.mopub.common.logging.MoPubLog
-import java.util.logging.Level
+import androidx.multidex.MultiDexApplication
 
-class MoPubDemoApplication : Application() {
+class MoPubDemoApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
     }
