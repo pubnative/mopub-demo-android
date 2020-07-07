@@ -18,7 +18,7 @@ class InsertAdUnitTask(private val database: AppDatabase?, private val callback:
                 val adUnitDao = database?.adUnitDao()
                 response = adUnitDao?.insert(adUnit)
             } catch (exception: Exception) {
-                Log.e(InsertAdUnitTask::class.java.simpleName, exception.message)
+                Log.e(InsertAdUnitTask::class.java.simpleName, exception.message ?: "Error inserting ad unit")
             }
         }
 
