@@ -60,56 +60,6 @@ references:
       command: bundle check || bundle install --path vendor/bundle
 
 jobs:
-  test_unit:
-    <<: *android_config
-    steps:
-      - checkout
-      - *restore_gradle_cache
-      - *restore_gems_cache
-      - *ruby_yum
-      - *bundler_update
-      - *ruby_dependencies
-      - *save_gradle_cache
-      - *save_gems_cache
-      - run:
-          name: Run unit tests
-          command: bundle exec fastlane unit_tests
-      - store_artifacts:
-          path: app/build/reports/
-          destination: /reports/
-      - store_test_results:
-          path: app/build/test-results/
-          destination: /test-results/
-
-  lint_check:
-    <<: *android_config
-    steps:
-      - checkout
-      - *restore_gradle_cache
-      - *restore_gems_cache
-      - *ruby_yum
-      - *bundler_update
-      - *ruby_dependencies
-      - *save_gradle_cache
-      - *save_gems_cache
-      - run:
-          name: Run Lint checks
-          command: bundle exec fastlane lint_check
-
-  send_coverage_report:
-    <<: *android_config
-    steps:
-      - checkout
-      - *restore_gradle_cache
-      - *restore_gems_cache
-      - *ruby_yum
-      - *bundler_update
-      - *ruby_dependencies
-      - *save_gradle_cache
-      - *save_gems_cache
-      - run:
-          name: Send reports to coveralls.io
-          command: ./gradlew cobertura coveralls
 
   deploy_firebase:
     <<: *android_config
@@ -126,47 +76,14 @@ jobs:
           name: Deploy to Firebase App Distribution
           command: bundle exec fastlane deploy_to_firebase
 
-  publish_bintray:
-    <<: *android_config
-    steps:
-      - checkout
-      - *restore_gradle_cache
-      - *restore_gems_cache
-      - *ruby_yum
-      - *bundler_update
-      - *ruby_dependencies
-      - *save_gradle_cache
-      - *save_gems_cache
-      - run:
-          name: Publish to Bintray
-          command: ./gradlew bintrayUpload
-
 workflows:
   version: 2
   build_test_deploy:
     jobs:
-      - test_unit
-
-      - send_coverage_report:
-          requires:
-            - test_unit
-
-      - lint_check:
-          requires:
-            - test_unit
 
       - deploy_firebase:
           filters:
             branches:
               only:
                 - master
-          requires:
-            - test_unit
 
-      - publish_bintray:
-          filters:
-            branches:
-              only:
-                - master
-          requires:
-            - test_unit
