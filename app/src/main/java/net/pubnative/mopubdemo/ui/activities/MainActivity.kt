@@ -7,15 +7,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import kotlinx.android.synthetic.main.activity_main.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import net.pubnative.mopubdemo.R
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var navigation: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        navigation = findViewById(R.id.navigation)
         setupNavigation()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

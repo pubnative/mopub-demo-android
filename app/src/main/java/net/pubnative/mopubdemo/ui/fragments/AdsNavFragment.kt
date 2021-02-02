@@ -5,12 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.mopub.mobileads.MoPubErrorCode
 import com.mopub.mobileads.MoPubInterstitial
 import com.mopub.mobileads.MoPubView
-import kotlinx.android.synthetic.main.fragment_nav_ads.*
 import net.pubnative.mopubdemo.R
 import net.pubnative.mopubdemo.managers.SettingsManager
 import net.pubnative.mopubdemo.models.*
@@ -20,6 +21,11 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
         private val TAG = AdsNavFragment::class.java.simpleName
     }
 
+    private lateinit var adUnitNameView: TextView
+    private lateinit var adUnitIdView: TextView
+    private lateinit var adUnitSizeView: TextView
+    private lateinit var requestButton: Button
+    private lateinit var showInterstitialButton: Button
     private var adView: MoPubView? = null
     private var interstitial: MoPubInterstitial? = null
     private var adUnit: AdUnit? = null
@@ -31,6 +37,12 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        adUnitNameView = view.findViewById(R.id.view_ad_unit_name)
+        adUnitIdView = view.findViewById(R.id.view_ad_unit_id)
+        adUnitSizeView = view.findViewById(R.id.view_ad_unit_size)
+        requestButton = view.findViewById(R.id.button_request)
+        showInterstitialButton = view.findViewById(R.id.button_show_interstitial)
+
         setupAdUnit(view)
     }
 
@@ -38,8 +50,8 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
         val settings = SettingsManager(activity!!)
         adUnit = settings.getSelectedAdUnit()
 
-        view_ad_unit_name.text = adUnit?.name
-        view_ad_unit_id.text = adUnit?.adUnitId
+        adUnitNameView.text = adUnit?.name
+        adUnitIdView.text = adUnit?.adUnitId
 
         adUnit?.let {
             when (adUnit?.adSize) {
@@ -49,8 +61,8 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
                     adView?.bannerAdListener = this
                     adView?.autorefreshEnabled = false
                     interstitial = null
-                    button_show_interstitial.visibility = View.GONE
-                    view_ad_unit_size.text = getString(R.string.ad_size_banner_simple)
+                    showInterstitialButton.visibility = View.GONE
+                    adUnitSizeView.text = getString(R.string.ad_size_banner_simple)
                 }
                 MRECT -> {
                     adView = view.findViewById(R.id.ad_mrect)
@@ -58,8 +70,8 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
                     adView?.bannerAdListener = this
                     adView?.autorefreshEnabled = false
                     interstitial = null
-                    button_show_interstitial.visibility = View.GONE
-                    view_ad_unit_size.text = getString(R.string.ad_size_mrect_simple)
+                    showInterstitialButton.visibility = View.GONE
+                    adUnitSizeView.text = getString(R.string.ad_size_mrect_simple)
                 }
                 LEADERBOARD -> {
                     adView = view.findViewById(R.id.ad_leaderboard)
@@ -67,34 +79,34 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
                     adView?.bannerAdListener = this
                     adView?.autorefreshEnabled = false
                     interstitial = null
-                    button_show_interstitial.visibility = View.GONE
-                    view_ad_unit_size.text = getString(R.string.ad_size_leaderboard_simple)
+                    showInterstitialButton.visibility = View.GONE
+                    adUnitSizeView.text = getString(R.string.ad_size_leaderboard_simple)
                 }
                 INTERSTITIAL -> {
                     adView = null
                     interstitial = MoPubInterstitial(requireActivity(), it.adUnitId)
                     interstitial?.interstitialAdListener = this
-                    button_show_interstitial.visibility = View.VISIBLE
-                    button_show_interstitial.isEnabled = false
-                    view_ad_unit_size.text = getString(R.string.ad_size_interstitial_simple)
+                    showInterstitialButton.visibility = View.VISIBLE
+                    showInterstitialButton.isEnabled = false
+                    adUnitSizeView.text = getString(R.string.ad_size_interstitial_simple)
                 }
                 else -> {
                     adView = null
                     interstitial = null
-                    button_show_interstitial.visibility = View.GONE
-                    view_ad_unit_size.text = getString(R.string.symbol_empty)
+                    showInterstitialButton.visibility = View.GONE
+                    adUnitSizeView.text = getString(R.string.symbol_empty)
                 }
             }
 
             setAdViewVisibility(view, it.adSize)
-            button_request.setOnClickListener {
+            requestButton.setOnClickListener {
                 if (adUnit?.adSize == BANNER || adUnit?.adSize == MRECT || adUnit?.adSize == LEADERBOARD) {
                     adView?.loadAd()
                 } else if (adUnit?.adSize == INTERSTITIAL) {
                     interstitial?.load()
                 }
             }
-            button_show_interstitial.setOnClickListener {
+            showInterstitialButton.setOnClickListener {
                 interstitial?.show()
             }
         }
@@ -131,7 +143,7 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
 
     // Interstitial Ad Listener
     override fun onInterstitialLoaded(interstitial: MoPubInterstitial?) {
-        button_show_interstitial.isEnabled = true
+        showInterstitialButton.isEnabled = true
         Log.d(TAG, "onInterstitialLoaded")
     }
 

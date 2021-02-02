@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_nav_ad_unit.*
 import net.pubnative.mopubdemo.R
 import net.pubnative.mopubdemo.data.AdUnitDataSource
 import net.pubnative.mopubdemo.data.AdUnitRepository
@@ -33,6 +34,11 @@ class AdUnitNavFragment : Fragment(), AdUnitClickListener, CreateAdUnitDialog.Cr
     private lateinit var adapter: AdUnitAdapter
     private var adUnit: AdUnit? = null
 
+    private lateinit var adUnitNameView: TextView
+    private lateinit var adUnitIdView: TextView
+    private lateinit var adUnitSizeView: TextView
+    private lateinit var adUnitList: RecyclerView
+    private lateinit var addAdUnitButton: FloatingActionButton
     private lateinit var adUnitRepository: AdUnitRepository
     private lateinit var settingsManager: SettingsManager
 
@@ -43,29 +49,34 @@ class AdUnitNavFragment : Fragment(), AdUnitClickListener, CreateAdUnitDialog.Cr
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        adUnitNameView = view.findViewById(R.id.view_ad_unit_name)
+        adUnitIdView = view.findViewById(R.id.view_ad_unit_id)
+        adUnitSizeView = view.findViewById(R.id.view_ad_unit_size)
+        adUnitList = view.findViewById(R.id.list_ad_units)
+        addAdUnitButton = view.findViewById(R.id.button_add_ad_unit)
         adUnitRepository = AdUnitRepository(activity!!)
         settingsManager = SettingsManager(activity!!)
 
         setupAdUnit(settingsManager.getSelectedAdUnit())
 
         adapter = AdUnitAdapter(this)
-        list_ad_units.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-        list_ad_units.itemAnimator = DefaultItemAnimator()
-        list_ad_units.adapter = adapter
+        adUnitList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+        adUnitList.itemAnimator = DefaultItemAnimator()
+        adUnitList.adapter = adapter
 
         loadAdUnits()
 
-        button_add_ad_unit.setOnClickListener {
+        addAdUnitButton.setOnClickListener {
             showInsertDialog()
         }
     }
 
     private fun setupAdUnit(adUnit: AdUnit) {
-        view_ad_unit_name.text = adUnit.name
-        view_ad_unit_id.text = adUnit.adUnitId
+        adUnitNameView.text = adUnit.name
+        adUnitIdView.text = adUnit.adUnitId
 
 
-        view_ad_unit_size.text = when (adUnit.adSize) {
+        adUnitSizeView.text = when (adUnit.adSize) {
             BANNER -> getString(R.string.ad_size_banner_simple)
             MRECT -> getString(R.string.ad_size_mrect_simple)
             LEADERBOARD -> getString(R.string.ad_size_leaderboard_simple)
