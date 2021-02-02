@@ -1,0 +1,10 @@
+default_platform(:android)
+
+platform :android do
+
+    desc "Submit a new Beta Build to Firebase App Distribution"
+    lane :deploy_to_firebase do
+        gradle(task: "clean assembleDebug")
+        gradle(task: "clean appDistributionUploadDebug")
+    end
+end
