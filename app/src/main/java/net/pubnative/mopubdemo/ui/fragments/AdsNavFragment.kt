@@ -25,6 +25,7 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
     private lateinit var adUnitIdView: TextView
     private lateinit var adUnitSizeView: TextView
     private lateinit var errorView: TextView
+    private lateinit var errorLabel: TextView
     private lateinit var requestButton: Button
     private lateinit var showInterstitialButton: Button
     private var adView: MoPubView? = null
@@ -42,6 +43,7 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
         adUnitIdView = view.findViewById(R.id.view_ad_unit_id)
         adUnitSizeView = view.findViewById(R.id.view_ad_unit_size)
         errorView = view.findViewById(R.id.view_error)
+        errorLabel = view.findViewById(R.id.view_error_label)
         requestButton = view.findViewById(R.id.button_request)
         showInterstitialButton = view.findViewById(R.id.button_show_interstitial)
 
@@ -103,6 +105,7 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
             setAdViewVisibility(view, it.adSize)
             requestButton.setOnClickListener {
                 errorView.visibility = View.GONE
+                errorLabel.visibility = View.GONE
                 if (adUnit?.adSize == BANNER || adUnit?.adSize == MRECT || adUnit?.adSize == LEADERBOARD) {
                     adView?.loadAd()
                 } else if (adUnit?.adSize == INTERSTITIAL) {
@@ -129,6 +132,7 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
     override fun onBannerFailed(banner: MoPubView?, errorCode: MoPubErrorCode?) {
         Log.d(TAG, "onBannerFailed")
         Toast.makeText(context, errorCode?.name, Toast.LENGTH_SHORT).show()
+        errorLabel.visibility = View.VISIBLE
         errorView.text = errorCode.toString()
         errorView.visibility = View.VISIBLE
     }
@@ -155,6 +159,7 @@ class AdsNavFragment : Fragment(), MoPubView.BannerAdListener, MoPubInterstitial
     override fun onInterstitialFailed(interstitial: MoPubInterstitial?, errorCode: MoPubErrorCode?) {
         Log.d(TAG, "onInterstitialFailed")
         Toast.makeText(context, errorCode?.name, Toast.LENGTH_SHORT).show()
+        errorLabel.visibility = View.VISIBLE
         errorView.text = errorCode.toString()
         errorView.visibility = View.VISIBLE
     }

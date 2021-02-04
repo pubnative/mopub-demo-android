@@ -32,6 +32,8 @@
 
     <string name="mopub_version">MoPub Version:</string>
 
+    <string name="error_label">Error:</string>
+
     <string name="ad_unit_name">Ad unit name:</string>
     <string name="ad_unit_size">Size:</string>
     <string name="ad_unit_id">Ad unit id:</string>

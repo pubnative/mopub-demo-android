@@ -116,16 +116,29 @@
             android:visibility="gone" />
 
         <TextView
-            android:id="@+id/view_error"
+            android:id="@+id/view_error_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="18dp"
             android:layout_marginTop="4dp"
+            android:layout_marginEnd="18dp"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:visibility="gone"
             />
 
+        <TextView
+            android:id="@+id/view_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="18dp"
+            android:text="@string/error_label"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:visibility="gone"
+            />
 
         <com.mopub.mobileads.MoPubView
             android:id="@+id/ad_banner"
