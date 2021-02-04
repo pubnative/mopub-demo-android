@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import com.mopub.common.MoPub
 import net.pubnative.mopubdemo.R
 import net.pubnative.mopubdemo.data.AdUnitDataSource
 import net.pubnative.mopubdemo.data.AdUnitRepository
@@ -37,6 +38,7 @@ class AdUnitNavFragment : Fragment(), AdUnitClickListener, CreateAdUnitDialog.Cr
     private lateinit var adUnitNameView: TextView
     private lateinit var adUnitIdView: TextView
     private lateinit var adUnitSizeView: TextView
+    private lateinit var mopubVersionView: TextView
     private lateinit var adUnitList: RecyclerView
     private lateinit var addAdUnitButton: FloatingActionButton
     private lateinit var adUnitRepository: AdUnitRepository
@@ -52,6 +54,7 @@ class AdUnitNavFragment : Fragment(), AdUnitClickListener, CreateAdUnitDialog.Cr
         adUnitNameView = view.findViewById(R.id.view_ad_unit_name)
         adUnitIdView = view.findViewById(R.id.view_ad_unit_id)
         adUnitSizeView = view.findViewById(R.id.view_ad_unit_size)
+        mopubVersionView = view.findViewById(R.id.view_mopub_version)
         adUnitList = view.findViewById(R.id.list_ad_units)
         addAdUnitButton = view.findViewById(R.id.button_add_ad_unit)
         adUnitRepository = AdUnitRepository(activity!!)
@@ -63,6 +66,8 @@ class AdUnitNavFragment : Fragment(), AdUnitClickListener, CreateAdUnitDialog.Cr
         adUnitList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         adUnitList.itemAnimator = DefaultItemAnimator()
         adUnitList.adapter = adapter
+
+        mopubVersionView.text = MoPub.SDK_VERSION
 
         loadAdUnits()
 
