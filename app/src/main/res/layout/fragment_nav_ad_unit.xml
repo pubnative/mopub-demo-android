@@ -10,6 +10,34 @@
         android:animateLayoutChanges="true"
         android:orientation="vertical">
 
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@string/mopub_version"
+                android:textColor="@color/primary_dark"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/view_mopub_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:maxLines="1"
+                android:textColor="@color/primary_dark"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/layout_ad_unit_header"
             android:layout_width="match_parent"
