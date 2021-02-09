@@ -91,7 +91,7 @@ jobs:
           name: Store artifact
           command: ./gradlew assembleDebug
       - store_artifacts:
-          path: /root/mopub-demo-android/app/build/outputs/apk
+          path: /root/mopub-demo-android/app/build/outputs/apk/debug/
           destination: /debug/
 
 workflows:
