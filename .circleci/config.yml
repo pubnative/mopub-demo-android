@@ -90,9 +90,9 @@ jobs:
       - run:
           name: Store artifact
           command: ./gradlew assembleDebug
-            - store_artifacts:
-                path: /root/hybid.sdk/hybid.demo/build/outputs/apk/debug/
-                destination: /debug/
+      - store_artifacts:
+          path: /root/mopub-demo-android/app/build/outputs/apk
+          destination: /debug/
 
 workflows:
   version: 2
