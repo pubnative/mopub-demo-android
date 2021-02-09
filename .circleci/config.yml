@@ -76,6 +76,24 @@ jobs:
           name: Deploy to Firebase App Distribution
           command: bundle exec fastlane deploy_to_firebase
 
+  store_artifact:
+    <<: *android_config
+    steps:
+      - checkout
+      - *restore_gradle_cache
+      - *restore_gems_cache
+      - *ruby_yum
+      - *bundler_update
+      - *ruby_dependencies
+      - *save_gradle_cache
+      - *save_gems_cache
+      - run:
+          name: Store artifact
+          command: ./gradlew assembleDebug
+            - store_artifacts:
+                path: /root/hybid.sdk/hybid.demo/build/outputs/apk/debug/
+                destination: /debug/
+
 workflows:
   version: 2
   build_test_deploy:
@@ -87,3 +105,9 @@ workflows:
               only:
                 - master
 
+      - store_artifact:
+          filters:
+            branches:
+              only:
+                - master
+                - OMA-948_mopub_demo_to_artifacts
