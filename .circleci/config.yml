@@ -110,4 +110,3 @@ workflows:
             branches:
               only:
                 - master
-                - OMA-948_mopub_demo_to_artifacts
