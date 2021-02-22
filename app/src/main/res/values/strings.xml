@@ -4,10 +4,10 @@
     <string name="nav_ad_unit">Ad Units</string>
     <string name="nav_ads">Ad Sizes</string>
 
-    <string name="ad_unit_id_default_banner">d9326e0b06b24083ba7b687834243df0</string>
-    <string name="ad_unit_id_default_mrect">0a35c946192848a8b138ef7e8599ebc6</string>
-    <string name="ad_unit_id_default_leaderboard">e6fa24882e2941f6a804e353564b9f29</string>
-    <string name="ad_unit_id_default_interstitial">ce4337adcdcc4004bfa1ad2fdfc9ecd5</string>
+    <string name="ad_unit_id_default_banner">e789c016a7344c6b98ecebd04beddf27</string>
+    <string name="ad_unit_id_default_mrect">76624a0451f8483ba54a28a74b11bba3</string>
+    <string name="ad_unit_id_default_leaderboard">fefcb04d726d4464a5d5f2cf3eaad33c</string>
+    <string name="ad_unit_id_default_interstitial">82151acc4e464e079809320eca2c520a</string>
 
     <string name="ad_unit_name_default_banner">Default Banner</string>
     <string name="ad_unit_name_default_mrect">Default Medium</string>
