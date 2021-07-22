@@ -23,7 +23,7 @@ import net.pubnative.mopubdemo.ui.adapters.AdUnitAdapter
 import net.pubnative.mopubdemo.ui.dialogs.CreateAdUnitDialog
 import net.pubnative.mopubdemo.ui.dialogs.EditAdUnitDialog
 
-class AdUnitNavFragment : Fragment(), AdUnitClickListener, CreateAdUnitDialog.CreateDialogListener,
+class AdUnitNavFragment : Fragment(R.layout.fragment_nav_ad_unit), AdUnitClickListener, CreateAdUnitDialog.CreateDialogListener,
     EditAdUnitDialog.EditDialogListener {
     companion object {
         private val TAG = AdsNavFragment::class.java.simpleName
@@ -44,10 +44,6 @@ class AdUnitNavFragment : Fragment(), AdUnitClickListener, CreateAdUnitDialog.Cr
     private lateinit var adUnitRepository: AdUnitRepository
     private lateinit var settingsManager: SettingsManager
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_nav_ad_unit, container, false)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -57,8 +53,8 @@ class AdUnitNavFragment : Fragment(), AdUnitClickListener, CreateAdUnitDialog.Cr
         mopubVersionView = view.findViewById(R.id.view_mopub_version)
         adUnitList = view.findViewById(R.id.list_ad_units)
         addAdUnitButton = view.findViewById(R.id.button_add_ad_unit)
-        adUnitRepository = AdUnitRepository(activity!!)
-        settingsManager = SettingsManager(activity!!)
+        adUnitRepository = AdUnitRepository(requireActivity())
+        settingsManager = SettingsManager(requireActivity())
 
         setupAdUnit(settingsManager.getSelectedAdUnit())
 
@@ -89,7 +85,7 @@ class AdUnitNavFragment : Fragment(), AdUnitClickListener, CreateAdUnitDialog.Cr
             else -> getString(R.string.symbol_empty)
         }
 
-        MoPubManager.initMoPubSdk(activity!!, adUnit)
+        MoPubManager.initMoPubSdk(requireActivity(), adUnit)
     }
 
     private fun loadAdUnits() {
@@ -163,13 +159,13 @@ class AdUnitNavFragment : Fragment(), AdUnitClickListener, CreateAdUnitDialog.Cr
     private fun showInsertDialog() {
         val dialog = CreateAdUnitDialog.newInstance()
         dialog.setTargetFragment(this, REQUEST_CREATE)
-        dialog.show(fragmentManager!!, "create_dialog")
+        dialog.show(parentFragmentManager, "create_dialog")
     }
 
     private fun showEditDialog(adUnit: AdUnit) {
         val dialog = EditAdUnitDialog.newInstance(adUnit)
         dialog.setTargetFragment(this, REQUEST_EDIT)
-        dialog.show(fragmentManager!!, "create_dialog")
+        dialog.show(parentFragmentManager, "create_dialog")
     }
 
     override fun onSubmitCreate(adUnit: AdUnit) {
