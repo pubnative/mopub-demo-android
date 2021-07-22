@@ -8,11 +8,7 @@ import net.pubnative.mopubdemo.models.AdUnit
 import net.pubnative.mopubdemo.models.BANNER
 
 class SettingsManager(private val context: Context) {
-    private val preferences: SharedPreferences
-
-    init {
-        preferences = PreferenceManager.getDefaultSharedPreferences(context)
-    }
+    private val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     fun setSelectedAdUnit(adUnit: AdUnit) {
         val editor = preferences.edit()
